@@ -14,8 +14,7 @@ const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
   const [popupMessage, setPopupMessage] = useState("");
-  const [popupType, setPopupType] = useState("success"); // "success" or "error"
-
+  const [popupType, setPopupType] = useState("success"); 
   const addToCart = (item) => {
     setCart(prevCart => {
       const existingItem = prevCart.find(cartItem => cartItem._id === item._id);
@@ -30,51 +29,25 @@ const CartProvider = ({ children }) => {
       }
     });
     
-    // Show success popup
+    
     setPopupMessage("Item added to cart successfully!");
     setPopupType("success");
     setShowPopup(true);
     
-    // Hide popup after 3 seconds
+    
     setTimeout(() => {
       setShowPopup(false);
     }, 3000);
   };
 
-  const removeFromCart = (itemId) => {
-    setCart(prevCart => prevCart.filter(item => item._id !== itemId));
-  };
 
-  const updateQuantity = (itemId, quantity) => {
-    if (quantity <= 0) {
-      removeFromCart(itemId);
-    } else {
-      setCart(prevCart =>
-        prevCart.map(item =>
-          item._id === itemId ? { ...item, quantity } : item
-        )
-      );
-    }
-  };
-
-  const clearCart = () => {
-    setCart([]);
-  };
-
-  const getCartTotal = () => {
-    return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-  };
-
-  const getCartCount = () => {
-    return cart.reduce((count, item) => count + item.quantity, 0);
-  };
 
   const showErrorPopup = (message) => {
     setPopupMessage(message);
     setPopupType("error");
     setShowPopup(true);
     
-    // Hide popup after 3 seconds
+    
     setTimeout(() => {
       setShowPopup(false);
     }, 3000);
@@ -83,11 +56,6 @@ const CartProvider = ({ children }) => {
   const value = {
     cart,
     addToCart,
-    removeFromCart,
-    updateQuantity,
-    clearCart,
-    getCartTotal,
-    getCartCount,
     showPopup,
     popupMessage,
     popupType,

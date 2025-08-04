@@ -33,11 +33,11 @@ const Login = () => {
           .then(result => {
             const user = result.user;
             console.log(user);
-            // Redirect will be handled by useEffect
+            
           })
           .catch(error => {
             console.error(error);
-            // Show error popup for wrong credentials
+            
             showErrorPopup("Invalid email or password. Please try again.");
           });
     }
@@ -62,9 +62,7 @@ const Login = () => {
                     <label className="label text-sm font-semibold">Password</label>
                     <input type="password" name='password' className="input input-bordered w-full" placeholder="Password" required />
                   </div>
-                  <div className="text-right">
-                    <a className="link link-hover text-sm text-blue-600 hover:text-blue-800">Forgot password?</a>
-                  </div>
+                  
                   <input className="btn btn-primary bg-yellow-500 hover:bg-yellow-600 border-0 w-full mt-6" type="submit" value="Login" />
                 </fieldset>
                 <div className="text-center mt-6 space-y-4">

@@ -16,7 +16,7 @@ const Navbar = () => {
       <li><Link to="/order" className="hover:text-yellow-400 transition-colors duration-300">Order Now</Link></li>
       {
         user ? <>
-        <button onClick={handleLogOut} className="btn btn-ghost hover:bg-yellow-400 hover:text-black transition-colors duration-300">LogOut</button>
+        <li><button onClick={handleLogOut} className="hover:text-yellow-400 transition-colors duration-300 bg-transparent border-none text-white cursor-pointer">LogOut</button></li>
         </> : <>
         <li><Link to="/login" className="hover:text-yellow-400 transition-colors duration-300">Login</Link></li>
         </>

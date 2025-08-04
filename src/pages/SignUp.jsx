@@ -31,11 +31,11 @@ const SignUp = () => {
       .then(result => {
         const loggedUser = result.user;
         console.log(loggedUser);
-        // Redirect will be handled by useEffect
+        
       })
       .catch(error => {
         console.error(error);
-        // Show error popup for signup errors
+      
         showErrorPopup("Failed to create account. Please try again.");
       });
     };
@@ -66,9 +66,7 @@ const SignUp = () => {
                 <label className="label text-sm font-semibold">Password</label>
                 <input type="password" {...register("password")} name="password" className="input input-bordered w-full" placeholder="Password" required />
               </div>
-              <div className="text-right">
-                <a className="link link-hover text-sm text-blue-600 hover:text-blue-800">Forgot password?</a>
-              </div>
+              
               <button className="btn btn-primary bg-yellow-500 hover:bg-yellow-600 border-0 w-full mt-6">Sign Up</button>
             </fieldset>
             <div className="text-center mt-6 space-y-4">
