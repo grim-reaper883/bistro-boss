@@ -14,12 +14,14 @@ const PopularMenu = () => {
     //         setMenu(popularItems)})
     // }, [])
     return (
-        <section className='mb-12'>
-            <SectionTitle subHeading={"Check it out"} heading={"FROM OUR MENU"}/>
-            <div className='grid md:grid-cols-2 gap-8'>
-                {
-                    popular.map(item=> <MenuItem key={item._id} item={item}/>)
-                }
+        <section className='py-16 px-4 md:px-8 lg:px-16'>
+            <div className="max-w-7xl mx-auto">
+                <SectionTitle subHeading={"Check it out"} heading={"FROM OUR MENU"}/>
+                <div className='grid md:grid-cols-2 gap-8 lg:gap-12'>
+                    {
+                        popular.map(item=> <MenuItem key={item._id} item={item}/>)
+                    }
+                </div>
             </div>
         </section>
     );

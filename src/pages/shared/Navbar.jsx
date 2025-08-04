@@ -11,21 +11,21 @@ const Navbar = () => {
   }
   const navOptions = (
     <>
-      <li><Link to="/">Home</Link></li>
-      <li><Link to="/menu">Menu</Link></li>
-      <li><Link to="/order">Order Now</Link></li>
+      <li><Link to="/" className="hover:text-yellow-400 transition-colors duration-300">Home</Link></li>
+      <li><Link to="/menu" className="hover:text-yellow-400 transition-colors duration-300">Menu</Link></li>
+      <li><Link to="/order" className="hover:text-yellow-400 transition-colors duration-300">Order Now</Link></li>
       {
         user ? <>
-        <button onClick={handleLogOut} className="btn btn-ghost">LogOut</button>
+        <button onClick={handleLogOut} className="btn btn-ghost hover:bg-yellow-400 hover:text-black transition-colors duration-300">LogOut</button>
         </> : <>
-        <li><Link to="/login">Login</Link></li>
+        <li><Link to="/login" className="hover:text-yellow-400 transition-colors duration-300">Login</Link></li>
         </>
       }
     </>
   );
   return (
     <div>
-      <div className="navbar fixed z-10 max-w-screen-xl mx-auto  shadow-sm bg-black/30 text-white">
+      <div className="navbar fixed z-10 max-w-screen-xl mx-auto shadow-lg bg-black/80 backdrop-blur-sm text-white px-4 md:px-8">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -47,18 +47,24 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-black rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-black/90 backdrop-blur-sm rounded-box z-50 mt-3 w-52 p-4 shadow-xl"
             >
               {navOptions}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">Bistro Boss</a>
+          <Link to="/" className="btn btn-ghost text-xl font-bold hover:text-yellow-400 transition-colors duration-300">Bistro Boss</Link>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{navOptions}</ul>
+          <ul className="menu menu-horizontal px-1 space-x-4">{navOptions}</ul>
         </div>
         <div className="navbar-end">
-
+          {user && (
+            <div className="flex items-center space-x-2">
+              <div className="w-8 h-8 rounded-full bg-yellow-400 flex items-center justify-center">
+                <span className="text-black font-bold text-sm">{user.email?.charAt(0).toUpperCase()}</span>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

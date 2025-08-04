@@ -6,7 +6,7 @@ import Testimonials from '../components/Testimonials';
 
 const Home = () => {
     return (
-        <div>
+        <div className="min-h-screen">
             <Banner/>
             <Category/>
             <PopularMenu/>

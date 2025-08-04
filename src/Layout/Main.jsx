@@ -7,9 +7,11 @@ const Main = () => {
     const location = useLocation();
     const noHeaderFooter = location.pathname.includes('login') || location.pathname.includes('signup')
     return (
-        <div>
+        <div className="min-h-screen">
             {noHeaderFooter || <Navbar/>}
-            <Outlet/>
+            <main className={noHeaderFooter ? "" : "pt-16"}>
+                <Outlet/>
+            </main>
             {noHeaderFooter || <Footer/>}
         </div>
     );

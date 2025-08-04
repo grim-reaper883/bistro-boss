@@ -1,13 +1,29 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
+import { useCart } from "../providers/CartProvider";
 
 
 const SignUp = () => {
 
     const { register, handleSubmit,} = useForm();
-    const {createUser} = useContext(AuthContext);
+    const {createUser, user} = useContext(AuthContext);
+    const { showErrorPopup } = useCart();
+    const navigate = useNavigate();
+
+    // Redirect if user is already logged in
+    useEffect(() => {
+      if (user) {
+        const redirectPath = localStorage.getItem('redirectAfterLogin');
+        if (redirectPath) {
+          localStorage.removeItem('redirectAfterLogin');
+          navigate(redirectPath);
+        } else {
+          navigate('/');
+        }
+      }
+    }, [user, navigate]);
 
     const onSubmit = data => {
       console.log(data);
@@ -15,37 +31,51 @@ const SignUp = () => {
       .then(result => {
         const loggedUser = result.user;
         console.log(loggedUser);
+        // Redirect will be handled by useEffect
       })
+      .catch(error => {
+        console.error(error);
+        // Show error popup for signup errors
+        showErrorPopup("Failed to create account. Please try again.");
+      });
     };
 
   return (
-    <div className="hero bg-base-200 min-h-screen">
-      <div className="hero-content flex-col lg:flex-row-reverse">
-        <div className="text-center md:w-1/2 lg:text-left">
-          <h1 className="text-5xl font-bold">Sign Up now!</h1>
-          <p className="py-6">
+    <div className="hero bg-base-200 min-h-screen py-16 px-4">
+      <div className="hero-content flex-col lg:flex-row-reverse max-w-6xl mx-auto">
+        <div className="text-center md:w-1/2 lg:text-left mb-8 lg:mb-0 lg:pl-8">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6">Sign Up now!</h1>
+          <p className="py-6 text-base md:text-lg leading-relaxed">
             Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
             excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
             a id nisi.
           </p>
         </div>
-        <div className="card md:w-1/2 bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-          <form onSubmit={handleSubmit(onSubmit)} className="card-body">
-            <fieldset className="fieldset">
-              <label className="label">Name</label>
-              <input type="text" {...register("name")} name="name" className="input" placeholder="Name"  />
-              <label className="label">Email</label>
-              <input type="email" {...register("email")} name="email" className="input" placeholder="Email" />
-              <label className="label">Password</label>
-              <input type="password" {...register("password")} name="password" className="input" placeholder="Password" />
+        <div className="card md:w-1/2 bg-base-100 w-full max-w-md shrink-0 shadow-2xl rounded-xl">
+          <form onSubmit={handleSubmit(onSubmit)} className="card-body p-8">
+            <fieldset className="fieldset space-y-4">
               <div>
-                <a className="link link-hover">Forgot password?</a>
+                <label className="label text-sm font-semibold">Name</label>
+                <input type="text" {...register("name")} name="name" className="input input-bordered w-full" placeholder="Name" required />
               </div>
-              <button className="btn btn-neutral mt-4">Sign Up</button>
+              <div>
+                <label className="label text-sm font-semibold">Email</label>
+                <input type="email" {...register("email")} name="email" className="input input-bordered w-full" placeholder="Email" required />
+              </div>
+              <div>
+                <label className="label text-sm font-semibold">Password</label>
+                <input type="password" {...register("password")} name="password" className="input input-bordered w-full" placeholder="Password" required />
+              </div>
+              <div className="text-right">
+                <a className="link link-hover text-sm text-blue-600 hover:text-blue-800">Forgot password?</a>
+              </div>
+              <button className="btn btn-primary bg-yellow-500 hover:bg-yellow-600 border-0 w-full mt-6">Sign Up</button>
             </fieldset>
-            <p>Already a user? <span className="text-blue-600"><Link to="/login">LogIn</Link></span></p>
+            <div className="text-center mt-6 space-y-4">
+              <p className="text-sm">Already a user? <span className="text-blue-600 font-semibold"><Link to="/login">LogIn</Link></span></p>
+              <Link to="/" className="btn btn-outline btn-sm">Back to Home</Link>
+            </div>
           </form>
-          
         </div>
       </div>
     </div>
