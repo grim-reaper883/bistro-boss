@@ -3,7 +3,7 @@ const Cover = ({ img, title }) => {
     <div
       className="hero h-[500px] md:h-[600px] lg:h-[700px]"
       style={{
-        backgroundImage: `url(${img})`,
+         backgroundImage: `url(${img})`,
       }}
     >
       <div className="hero-overlay bg-black bg-opacity-50"></div>

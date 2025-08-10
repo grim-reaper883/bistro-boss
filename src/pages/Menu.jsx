@@ -10,10 +10,12 @@ import MenuCategory from "../components/MenuCategory";
 const Menu = () => {
     const [menu] = useMenu();
     const dessert = menu.filter(item=> item.category === 'dessert') 
-    const salad = menu.filter(item=> item.category === 'salad') 
-    const soup = menu.filter(item=> item.category === 'soup')  
-    const pizza = menu.filter(item=> item.category === 'pizza')  
-    const offered = menu.filter(item=> item.category === 'offered')  
+    // const salad = menu.filter(item=> item.category === 'salad') 
+    // const soup = menu.filter(item=> item.category === 'soup')  
+    // const pizza = menu.filter(item=> item.category === 'pizza')  
+    const offered = menu.filter(item=> item.category === 'offered')
+    console.log(menuImg);
+  
     return (
         <div className="min-h-screen">
             <Cover img={menuImg} title="our menu"/>

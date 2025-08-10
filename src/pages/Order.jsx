@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import orderCoverImg from '../assets/shop/order.jpg'
+import orderCoverImg from '../assets/shop/order.jpg';
 import Cover from './shared/Cover';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
@@ -17,7 +17,7 @@ const Order = () => {
     const drinks = menu.filter(item=> item.category === 'drinks') 
     return (
         <div className="min-h-screen">
-            <Cover img={orderCoverImg} title="Order Food"/>
+            <Cover img={orderCoverImg} title="Order Food" />
             <div className="py-16 px-4 md:px-8 lg:px-16">
                 <div className="max-w-7xl mx-auto">
                     <Tabs defaultIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
