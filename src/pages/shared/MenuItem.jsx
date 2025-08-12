@@ -14,7 +14,6 @@ const MenuItem = ({item}) => {
 
     const handleAddToCart = () => {
         if (!user) {
-            // Store the current location to redirect back after login
             localStorage.setItem('redirectAfterLogin', location.pathname);
             navigate('/login');
         } else {

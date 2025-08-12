@@ -2,6 +2,7 @@ import { useContext,  } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { useCart } from "../providers/CartProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import SocialLogin from "../components/SocialLogin";
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
@@ -75,12 +76,14 @@ const Login = () => {
                   <Link to="/signup">Create an account</Link>
                 </span>
               </p>
+              <SocialLogin/>
               <Link to="/" className="btn btn-outline btn-sm">
                 Back to Home
               </Link>
             </div>
           </form>
         </div>
+        
       </div>
     </div>
   );
